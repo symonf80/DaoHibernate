@@ -11,22 +11,19 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "persons")
+@Entity
 public class Person {
     @EmbeddedId
     private PrimaryKey primaryKey;
-
-    @Column
+    @Column(insertable = false,updatable = false)
     private String name;
-
-    @Column
+    @Column(insertable = false,updatable = false)
     private String surname;
-
-    @Column
+    @Column(insertable = false,updatable = false)
     private int age;
     @Column
     private int phone_of_number;
-    @Column
-    private String city_of_living;
+    @Column(name = "city_of_living")
+    private String city;
 }
