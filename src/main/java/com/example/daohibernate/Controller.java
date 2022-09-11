@@ -16,6 +16,10 @@ public class Controller {
     public Controller(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
+    @GetMapping("/hi")
+    public String getHi() {
+        return "Hi";
+    }
 
     @GetMapping("/by-city")
     public List<Person> getPersonByCity(String city) {
