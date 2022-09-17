@@ -1,9 +1,12 @@
 package com.example.daohibernate;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;ration.WebSecurityConfigurerAdapter;
 
 @Configuration
 public class Security extends WebSecurityConfigurerAdapter {
@@ -12,13 +15,16 @@ public class Security extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("Bil")
-                .password("{noop}1234")
-                .authorities("read", "write")
+               .withUser("Bil")
+                .password(encoder().encode("12"))
+                .authorities("READ", "WRITE", "DELETE")
                 .and()
                 .withUser("Bred")
-                .password("{noop}5678")
-                .authorities("read");
+                .password(encoder().encode("34"))
+                .authorities("READ")
+                .and()
+                .withUser("Ivan").password(encoder().encode("56"))
+                .roles("WRITE");
     }
 
     @Override

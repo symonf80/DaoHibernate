@@ -26,11 +26,7 @@ public class Controller {
         return personRepository.findByCity(city);
     }
 
-    @GetMapping("/age-less-than")
-    public List<Person> getPersonByAgeLessThanOrderBy(int age) {
-        return personRepository.findByAgeLessThenOrderByAge(age);
-    }
-
+  
     @GetMapping("/by-name-and-surname")
     public Optional<Person> getPersonByNameAndSurname(String name, String surname) {
         return personRepository.findByNameAndSurname(name, surname);
